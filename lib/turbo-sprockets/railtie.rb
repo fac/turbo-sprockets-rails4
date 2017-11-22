@@ -19,18 +19,8 @@ module TurboSprockets
 
     config.after_initialize do
       if ::TurboSprockets.configuration.preloader.enabled?
-        # make sure routes are available before attempting to preload, since
-        # assets may make use of route helpers
-        Rails.application.reload_routes!
-
         # actually do the preloading
         TurboSprockets::ParallelPreloader.preload!
-
-        # for some reason parallel operations may cause activerecord to
-        # disconnect
-        if const_defined?(:ActiveRecord)
-          ActiveRecord::Base.connection.reconnect!
-        end
       end
     end
   end
