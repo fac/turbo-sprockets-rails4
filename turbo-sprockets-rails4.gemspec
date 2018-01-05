@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.has_rdoc = true
 
-  s.add_dependency 'parallel', '~> 1.0'
+  s.add_dependency 'parallel', '~> 1.10'
   s.add_dependency 'railties', '>= 4'
   s.add_dependency 'sprockets', '~> 3.0'
 
