@@ -21,6 +21,10 @@ module TurboSprockets
       if ::TurboSprockets.configuration.preloader.enabled?
         # actually do the preloading
         TurboSprockets::ParallelPreloader.preload!
+
+        # for some reason parallel operations may cause activerecord to
+        # disconnect
+        ::ActiveRecord::Base.clear_active_connections! if const_defined?(:ActiveRecord)
       end
     end
   end
